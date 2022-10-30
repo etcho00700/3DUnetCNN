@@ -41,8 +41,8 @@ def build_or_load_model(model_name, model_filename, n_features, n_outputs, n_gpu
         if n_gpus > 0:
             state_dict = torch.load(model_filename)
         else:
-            pdb.set_trace()
             state_dict = torch.load(model_filename, map_location=torch.device('cpu'))
+        #pdb.set_trace()
         model = load_state_dict(model, state_dict, n_gpus=n_gpus, strict=strict)
     return model
 

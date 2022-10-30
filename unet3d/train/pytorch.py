@@ -153,7 +153,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
                                        collate_fn=collate_fn,
                                        pin_memory=pin_memory,
                                        prefetch_factor=prefetch_factor)
-
+    #pdb.set_trace()
     train(model=model, optimizer=optimizer, criterion=criterion, n_epochs=config["n_epochs"], verbose=bool(verbose),
           training_loader=training_loader, validation_loader=validation_loader, model_filename=model_filename,
           training_log_filename=training_log_filename,
@@ -216,6 +216,7 @@ def train(model, optimizer, criterion, n_epochs, training_loader, validation_loa
             print("Early stopping patience {} has been reached.".format(early_stopping_patience))
             break
 
+        pdb.set_trace()
         # train the model
         loss = epoch_training(training_loader, model, criterion, optimizer=optimizer, epoch=epoch, n_gpus=n_gpus,
                               regularized=regularized, vae=vae, scaler=scaler)
