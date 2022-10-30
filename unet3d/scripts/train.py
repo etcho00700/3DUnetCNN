@@ -2,6 +2,7 @@ import os
 import argparse
 import pandas as pd
 import numpy as np
+
 from unet3d.train import run_training
 from unet3d.utils.filenames import wrapped_partial, generate_filenames, load_bias, load_sequence
 from unet3d.utils.sequences import (WholeVolumeToSurfaceSequence, HCPRegressionSequence, ParcelBasedSequence,
@@ -13,6 +14,7 @@ from unet3d.utils.custom import get_metric_data_from_config
 from unet3d.scripts.predict import format_parser as format_prediction_args
 from unet3d.scripts.predict import run_inference
 from unet3d.scripts.script_utils import get_machine_config, add_machine_config_to_parser
+import pdb
 
 
 def parse_args():
@@ -117,6 +119,7 @@ def main():
     print("Model: ", namespace.model_filename)
     print("Log: ", namespace.training_log_filename)
     system_config = get_machine_config(namespace)
+    #system_config["n_gpus"] = 0
     training_function_kwargs = in_config("training_function_kwargs", config, dict())
 
     # set verbosity
@@ -198,6 +201,7 @@ def main():
     if in_config("add_contours", config["sequence_kwargs"], False):
         config["n_outputs"] = config["n_outputs"] * 2
 
+    #This first if block does not apply (I'm doing segmentation)
     if sequence_class == ParcelBasedSequence:
         target_parcels = config["sequence_kwargs"].pop("target_parcels")
         for target_parcel in target_parcels:

@@ -2,19 +2,19 @@
   "subjects_filename": "examples/brats2020/brats_subjects_2020.json",
   "generate_filenames": "templates",
   "generate_filenames_kwargs": {
-    "directory": "examples/brats2020/brats2020/MICCAI_BraTS2020_TrainingData/BraTS20_Training_{subject}",
+    "directory": "MICCAI_BraTS2020_TrainingData/BraTS20_Training_{subject}",
     "feature_templates": [
-      "BraTS20_Training_{subject}_t1.nii",
-      "BraTS20_Training_{subject}_t1ce.nii",
-      "BraTS20_Training_{subject}_flair.nii",
-      "BraTS20_Training_{subject}_t2.nii"
+      "BraTS20_Training_{subject}_t1.nii.gz",
+      "BraTS20_Training_{subject}_t1ce.nii.gz",
+      "BraTS20_Training_{subject}_flair.nii.gz",
+      "BraTS20_Training_{subject}_t2.nii.gz"
     ],
-    "target_templates": "BraTS20_Training_{subject}_seg.nii"
+    "target_templates": "BraTS20_Training_{subject}_seg.nii.gz"
   },
   "window": [
-    176,
-    224,
-    144
+    112,
+    144,
+    96
   ],
   "n_features": 4,
   "optimizer": "Adam",
@@ -41,7 +41,7 @@
     "base_width":  32,
     "encoder_blocks": [2, 2, 2, 2, 2],
     "decoder_mirrors_encoder": false,
-    "input_shape": [176, 224, 144],
+    "input_shape": [112, 144, 96],
     "activation": "sigmoid"
   },
   "skip_validation": true,

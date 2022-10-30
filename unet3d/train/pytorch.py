@@ -13,6 +13,7 @@ from ..utils.pytorch import WholeBrainCIFTI2DenseScalarDataset
 from .pytorch_training_utils import epoch_training, epoch_validatation, collate_flatten, collate_5d_flatten
 from ..utils.pytorch import functions
 from ..utils.utils import in_config
+import pdb
 
 
 def build_optimizer(optimizer_name, model_parameters, learning_rate=1e-4):
@@ -20,7 +21,7 @@ def build_optimizer(optimizer_name, model_parameters, learning_rate=1e-4):
 
 
 def run_pytorch_training(config, model_filename, training_log_filename, verbose=1, use_multiprocessing=False,
-                         n_workers=1, max_queue_size=5, model_name='resnet_34', n_gpus=1, regularized=False,
+                         n_workers=1, max_queue_size=5, model_name='resnet_34', n_gpus=0, regularized=False,
                          sequence_class=WholeBrainCIFTI2DenseScalarDataset, directory=None, test_input=1,
                          metric_to_monitor="loss", model_metrics=(), bias=None, pin_memory=False, amp=False,
                          prefetch_factor=1, **unused_args):

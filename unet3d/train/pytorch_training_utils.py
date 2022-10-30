@@ -9,6 +9,7 @@ import torch.nn.parallel
 import torch.optim
 import torch.utils.data
 import torch.utils.data.distributed
+import pdb
 
 try:
     from torch.utils.data._utils.collate import default_collate
@@ -80,7 +81,8 @@ def epoch_training(train_loader, model, criterion, optimizer, epoch, n_gpus=None
 
 
 def batch_loss(model, images, target, criterion, n_gpus=0, regularized=False, vae=False, use_amp=None):
-    if n_gpus is not None:
+    #if n_gpus is not None:
+    if n_gpus > 0:
         torch.cuda.empty_cache()
         images = images.cuda()
         target = target.cuda()

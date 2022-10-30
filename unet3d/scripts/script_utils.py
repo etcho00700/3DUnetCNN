@@ -10,7 +10,7 @@ def add_machine_config_to_parser(parser):
                         help="Number of threads to use during training (default = 1). Warning: using a high number of "
                              "threads can sometimes cause the computer to run out of memory. This setting is "
                              "ignored if machine_config_filename is set.")
-    parser.add_argument("--ngpus", default=1, type=int,
+    parser.add_argument("--ngpus", default=0, type=int,
                         help="Number of gpus to use for training. This setting is ignored if machine_config_filename is"
                              "set.")
     parser.add_argument("--directory", default="",
