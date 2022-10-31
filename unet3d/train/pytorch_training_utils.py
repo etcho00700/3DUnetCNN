@@ -52,6 +52,7 @@ def epoch_training(train_loader, model, criterion, optimizer, epoch, n_gpus=None
                           human_readable_size(torch.cuda.max_memory_cached(i_gpu)))
 
         optimizer.zero_grad()
+        #pdb.set_trace()
         loss, batch_size = batch_loss(model, images, target, criterion, n_gpus=n_gpus, regularized=regularized,
                                       vae=vae, use_amp=use_amp)
         if n_gpus:
@@ -96,6 +97,9 @@ def batch_loss(model, images, target, criterion, n_gpus=0, regularized=False, va
 
 
 def _batch_loss(model, images, target, criterion, regularized=False, vae=False):
+    pdb.set_trace()
+    #Here, "images" is a tensor of size [2 (batch size), 4 (channel num), 176, 224, 144]
+    #"target" is a tensor of size [2 (batch size), 3 (number of tumor category), 176, 224, 144]
     output = model(images)
     batch_size = images.size(0)
     if regularized:

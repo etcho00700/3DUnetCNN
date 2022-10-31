@@ -216,7 +216,7 @@ def train(model, optimizer, criterion, n_epochs, training_loader, validation_loa
             print("Early stopping patience {} has been reached.".format(early_stopping_patience))
             break
 
-        pdb.set_trace()
+        #pdb.set_trace()
         # train the model
         loss = epoch_training(training_loader, model, criterion, optimizer=optimizer, epoch=epoch, n_gpus=n_gpus,
                               regularized=regularized, vae=vae, scaler=scaler)
