@@ -1,22 +1,20 @@
 {
-  "subjects_filename": "examples/brats2020/brats_subjects_2020.json",
+  "subjects_filename": "examples/brats2020/subjects.json",
   "generate_filenames": "templates",
   "generate_filenames_kwargs": {
-    "directory": "examples/brats2020/brats2020/MICCAI_BraTS2020_TrainingData/BraTS20_Training_{subject}",
+    "directory": "examples/brats2020/nifti_files/Train/S_{subject}",
     "feature_templates": [
-      "BraTS20_Training_{subject}_t1.nii",
-      "BraTS20_Training_{subject}_t1ce.nii",
-      "BraTS20_Training_{subject}_flair.nii",
-      "BraTS20_Training_{subject}_t2.nii"
+      "S_{subject}_t1.nii",
+      "S_{subject}_t2.nii"
     ],
-    "target_templates": "BraTS20_Training_{subject}_seg.nii"
+    "target_templates": "S_{subject}_seg.nii"
   },
   "window": [
-    176,
-    224,
-    144
+    91,
+    109,
+    91
   ],
-  "n_features": 4,
+  "n_features": 2,
   "optimizer": "Adam",
   "package": "pytorch",
   "loss": "per_channel_dice_loss",
@@ -41,12 +39,12 @@
     "base_width":  32,
     "encoder_blocks": [2, 2, 2, 2, 2],
     "decoder_mirrors_encoder": false,
-    "input_shape": [176, 224, 144],
+    "input_shape": [91, 109, 91],
     "activation": "sigmoid"
   },
   "skip_validation": true,
   "iterations_per_epoch": 1,
-  "n_outputs": 3,
+  "n_outputs": 1,
   "sequence": "WholeVolumeSegmentationDataset",
   "sequence_kwargs": {
     "normalization": "zero_mean",

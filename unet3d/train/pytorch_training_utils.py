@@ -97,7 +97,7 @@ def batch_loss(model, images, target, criterion, n_gpus=0, regularized=False, va
 
 
 def _batch_loss(model, images, target, criterion, regularized=False, vae=False):
-    pdb.set_trace()
+    #pdb.set_trace()
     #Here, "images" is a tensor of size [2 (batch size), 4 (channel num), 176, 224, 144]
     #"target" is a tensor of size [2 (batch size), 3 (number of tumor category), 176, 224, 144]
     output = model(images)
