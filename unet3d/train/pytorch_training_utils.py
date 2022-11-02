@@ -35,6 +35,7 @@ def epoch_training(train_loader, model, criterion, optimizer, epoch, n_gpus=None
 
     end = time.time()
     for i, (images, target) in enumerate(train_loader):
+        #pdb.set_trace()
         # measure data loading time
         data_time.update(time.time() - end)
 
@@ -98,10 +99,11 @@ def batch_loss(model, images, target, criterion, n_gpus=0, regularized=False, va
 
 def _batch_loss(model, images, target, criterion, regularized=False, vae=False):
     #pdb.set_trace()
-    #Here, "images" is a tensor of size [2 (batch size), 4 (channel num), 176, 224, 144]
-    #"target" is a tensor of size [2 (batch size), 3 (number of tumor category), 176, 224, 144]
+    #Here, "images" is a tensor of size [batch size, #channels, 176, 224, 144]
+    #"target" is a tensor of size [batch size, #category, 176, 224, 144]
     output = model(images)
     batch_size = images.size(0)
+    #pdb.set_trace()
     if regularized:
         try:
             output, output_vae, mu, logvar = output

@@ -67,6 +67,17 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
                                 freeze_bias=in_config("freeze_bias", config, False),
                                 bias=bias, n_gpus=n_gpus, **model_kwargs)
 
+    #pdb.set_trace()
+
+    #Freeze all parameters
+    for param in model.parameters():
+        param.requires_grad = False
+
+    #Unfreeze last layer weights
+    for name, param in model.named_parameters():
+        if 'final_convolution' in name:
+            param.requires_grad = True
+
     model.train()
 
     criterion = load_criterion(config['loss'], n_gpus=n_gpus)
@@ -107,6 +118,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
                                       **in_config("additional_training_args", config, dict()),
                                       **sequence_kwargs)
 
+    #pdb.set_trace()
     training_loader = DataLoader(training_dataset,
                                  batch_size=config["batch_size"] // in_config('points_per_subject', config, 1),
                                  shuffle=True,
@@ -135,6 +147,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
         validation_loader = None
         metric_to_monitor = "loss"
     else:
+        pdb.set_trace()
         validation_dataset = sequence_class(filenames=config['validation_filenames'],
                                             flip=False,
                                             reorder=config['reorder'],

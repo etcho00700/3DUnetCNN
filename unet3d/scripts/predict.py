@@ -1,5 +1,7 @@
 import os
 import argparse
+import pdb
+
 from unet3d.utils.utils import load_json, in_config
 from unet3d.predict.volumetric import volumetric_predictions
 from unet3d.utils.filenames import generate_filenames, load_subject_ids, load_sequence
@@ -149,6 +151,8 @@ def run_inference(namespace):
         sequence = load_sequence(config["sequence"])
     else:
         sequence = None
+
+    #pdb.set_trace()
 
     labels = sequence_kwargs["labels"] if namespace.segment else None
     if "use_label_hierarchy" in sequence_kwargs:

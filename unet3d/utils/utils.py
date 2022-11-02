@@ -5,6 +5,7 @@ import numpy as np
 import json
 from nilearn.image import resample_to_img, reorder_img, new_img_like
 from scipy.ndimage import binary_erosion
+import pdb
 
 
 def load_json(filename):
@@ -81,6 +82,9 @@ def compile_one_hot_encoding(data, n_labels, labels=None, dtype=np.uint8, return
 
 def convert_one_hot_to_label_map(one_hot_encoding, labels, axis=3, threshold=0.5, sum_then_threshold=False,
                                  dtype=np.int16, label_hierarchy=False):
+
+    #pdb.set_trace()
+
     if label_hierarchy:
         return convert_one_hot_to_label_map_using_hierarchy(one_hot_encoding, labels, axis=axis, threshold=threshold,
                                                             dtype=dtype)
@@ -96,6 +100,7 @@ def convert_one_hot_to_label_map(one_hot_encoding, labels, axis=3, threshold=0.5
                 i = i + len(_labels)
             label_map = np.stack(label_maps, axis=axis)
         else:
+            pdb.set_trace()
             label_map = convert_one_hot_to_single_label_map_volume(one_hot_encoding, labels, threshold, axis,
                                                                    sum_then_threshold, dtype)
         return label_map

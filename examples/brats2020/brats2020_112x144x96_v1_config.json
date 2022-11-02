@@ -34,8 +34,8 @@
   "early_stopping_patience": 50,
   "save_best": false,
   "save_last_n_models": 10,
-  "batch_size": 2,
-  "validation_batch_size": 2,
+  "batch_size": 1,
+  "validation_batch_size": 1,
   "model_name": "UNet",
   "model_kwargs": {
     "base_width":  32,

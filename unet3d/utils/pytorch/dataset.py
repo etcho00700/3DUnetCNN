@@ -1,3 +1,5 @@
+import pdb
+
 from torch.utils.data import Dataset
 import torch
 import numpy as np
@@ -74,6 +76,7 @@ class AEDataset(WholeVolumeAutoEncoderSequence, Dataset):
 
 class WholeVolumeSegmentationDataset(WholeVolumeSegmentationSequence, Dataset):
     def __init__(self, *args, batch_size=1, shuffle=False, metric_names=None, **kwargs):
+        #pdb.set_trace()
         super().__init__(*args, batch_size=batch_size, shuffle=shuffle, metric_names=metric_names, **kwargs)
 
     def __len__(self):

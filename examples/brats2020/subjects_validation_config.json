@@ -2,7 +2,7 @@
   "subjects_filename": "examples/brats2020/subjects.json",
   "generate_filenames": "templates",
   "generate_filenames_kwargs": {
-    "directory": "examples/brats2020/nifti_files/Train/S_{subject}",
+    "directory": "examples/brats2020/nifti_files/Validate/S_{subject}",
     "feature_templates": [
       "S_{subject}_t1_resized.nii",
       "S_{subject}_t2_resized.nii"
