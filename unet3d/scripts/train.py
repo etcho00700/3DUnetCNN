@@ -229,6 +229,7 @@ def main():
                          **system_config)
 
     else:
+        #pdb.set_trace()
         run_training(package, config, namespace.model_filename, namespace.training_log_filename,
                      sequence_class=sequence_class,
                      model_metrics=model_metrics,

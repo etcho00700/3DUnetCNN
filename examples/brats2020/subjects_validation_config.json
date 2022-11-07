@@ -42,7 +42,7 @@
     "input_shape": [96, 112, 96],
     "activation": "sigmoid"
   },
-  "skip_validation": true,
+  "skip_validation": false,
   "iterations_per_epoch": 1,
   "n_outputs": 1,
   "sequence": "WholeVolumeSegmentationDataset",
@@ -52,7 +52,7 @@
     "interpolation": "linear",
     "labels": [1],
     "add_contours": false,
-    "use_label_hierarchy": false
+    "use_label_hierarchy": true
   },
   "additional_training_args": {
     "augment_scale_std": 0.1,

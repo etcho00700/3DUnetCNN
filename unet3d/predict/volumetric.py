@@ -1,10 +1,11 @@
 import os
+import pdb
 
 import numpy as np
 from nilearn.image import new_img_like, resample_to_img
 from unet3d.predict.utils import pytorch_predict_batch_array, get_feature_filename_and_subject_id
 from unet3d.utils.utils import one_hot_image_to_label_map, get_nibabel_data
-
+import matplotlib.pyplot as plt
 
 def load_volumetric_model(model_name, model_filename, n_outputs, n_features, n_gpus, strict, **kwargs):
     from unet3d.models.pytorch.build import build_or_load_model
@@ -41,6 +42,7 @@ def load_volumetric_model_and_dataset(model_name, model_filename, model_kwargs, 
 
 
 def load_images_from_dataset(dataset, idx, resample_predictions):
+    #pdb.set_trace()
     if resample_predictions:
         x_image, ref_image = dataset.get_feature_image(idx, return_unmodified=True)
     else:
@@ -88,8 +90,16 @@ def predict_volumetric_batch(model, batch, batch_references, batch_subjects, bat
                              segmentation, output_template, n_gpus, verbose, threshold, interpolation,
                              segmentation_labels, sum_then_threshold, label_hierarchy, write_input_image=False):
     pred_x = pytorch_predict_batch_array(model, batch, n_gpus=n_gpus)
+    #pdb.set_trace()
     for batch_idx in range(len(batch)):
-        pred_image = prediction_to_image(pred_x[batch_idx].squeeze(), input_image=batch_references[batch_idx][0],
+        #pdb.set_trace()
+        #img = np.array(batch_references[batch_idx][1].dataobj)
+        #img2 = np.array(pred_x[batch_idx].squeeze())
+        #plt.imshow(img[:,:,50,1])
+        #plt.imshow(img2[:,:,50])
+        #plt.show()
+
+        pred_image = prediction_to_image(pred_x[batch_idx], input_image=batch_references[batch_idx][0],
                                          reference_image=batch_references[batch_idx][1], interpolation=interpolation,
                                          segmentation=segmentation, segmentation_labels=segmentation_labels,
                                          threshold=threshold, sum_then_threshold=sum_then_threshold,
@@ -127,6 +137,8 @@ def pytorch_volumetric_predictions(model_filename, model_name, n_features, filen
                                                                  sequence_kwargs, filenames, window, spacing,
                                                                  metric_names)
 
+    #pdb.set_trace()
+
     # criterion = load_criterion(criterion_name, n_gpus=n_gpus)
     results = list()
     print("Dataset: ", len(dataset))
@@ -136,6 +148,7 @@ def pytorch_volumetric_predictions(model_filename, model_name, n_features, filen
         batch_subjects = list()
         batch_filenames = list()
         for idx in range(len(dataset)):
+            #pdb.set_trace()
             x_filename, subject_id = get_feature_filename_and_subject_id(dataset, idx, verbose=verbose)
             x_image, ref_image = load_images_from_dataset(dataset, idx, resample_predictions)
 

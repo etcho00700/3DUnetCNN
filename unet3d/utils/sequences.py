@@ -1,4 +1,5 @@
 import os
+import pdb
 from functools import partial
 import numpy as np
 import nibabel as nib
@@ -126,6 +127,7 @@ def format_feature_image(feature_image, window, crop=False, cropping_kwargs=None
                          augment_translation_probability=0, augment_blur_mean=None, augment_blur_std=None,
                          augment_blur_probability=0, flip_front_back_probability=0, reorder=False,
                          interpolation="linear"):
+    #pdb.set_trace()
     if reorder:
         feature_image = reorder_img(feature_image, resample=interpolation)
     if crop:
@@ -148,6 +150,7 @@ def format_feature_image(feature_image, window, crop=False, cropping_kwargs=None
                                   augment_blur_probability=augment_blur_probability,
                                   additive_noise_std=additive_noise_std,
                                   additive_noise_probability=additive_noise_probability)
+    #pdb.set_trace()
     affine = resize_affine(affine, shape, window)
     return feature_image, affine
 
@@ -558,6 +561,7 @@ class WholeVolumeAutoEncoderSequence(WholeVolumeToSurfaceSequence):
 
     def format_feature_image(self, input_filenames, return_unmodified=False):
         unmodified_image = self.load_feature_image(input_filenames)
+        #pdb.set_trace()
         image, affine = format_feature_image(feature_image=self.normalize_image(unmodified_image),
                                              crop=self.crop,
                                              cropping_kwargs=self.cropping_kwargs,

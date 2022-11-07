@@ -48,6 +48,7 @@ def build_or_load_model(model_name, model_filename, n_features, n_outputs, n_gpu
 
 
 def load_state_dict(model, state_dict, n_gpus, strict=False):
+    #pdb.set_trace()
     try:
         if not strict:
             state_dict = match_state_dict_shapes(model.state_dict(), state_dict)

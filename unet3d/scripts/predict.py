@@ -60,6 +60,7 @@ def run_inference(namespace):
 
     system_config = get_machine_config(namespace)
 
+    #pdb.set_trace()
     if namespace.filenames:
         filenames = list()
         for filename in namespace.filenames:
@@ -90,6 +91,7 @@ def run_inference(namespace):
             config[namespace.group] = load_json(namespace.subjects_config_filename)[namespace.group]
         else:
             load_subject_ids(config, namespace.group)
+        #pdb.set_trace()
         filenames = generate_filenames(config, namespace.group, directory,
                                        skip_targets=(not namespace.eval))
 
@@ -100,6 +102,7 @@ def run_inference(namespace):
 
     print("Output Directory:", namespace.output_directory)
 
+    #pdb.set_trace()
     if not os.path.exists(namespace.output_directory):
         os.makedirs(namespace.output_directory)
 

@@ -69,6 +69,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
 
     #pdb.set_trace()
 
+
     #Freeze all parameters
     for param in model.parameters():
         param.requires_grad = False
@@ -103,6 +104,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
         from torch.utils.data.dataloader import default_collate
         collate_fn = default_collate
 
+    #pdb.set_trace()
     # 4. Create datasets
     training_dataset = sequence_class(filenames=config['training_filenames'],
                                       flip=in_config('flip', config, False),
@@ -126,7 +128,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
                                  collate_fn=collate_fn,
                                  pin_memory=pin_memory,
                                  prefetch_factor=prefetch_factor)
-
+    #pdb.set_trace()
     if test_input:
         for index in range(test_input):
             x, y = training_dataset[index]
@@ -147,7 +149,7 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
         validation_loader = None
         metric_to_monitor = "loss"
     else:
-        pdb.set_trace()
+        #pdb.set_trace()
         validation_dataset = sequence_class(filenames=config['validation_filenames'],
                                             flip=False,
                                             reorder=config['reorder'],
