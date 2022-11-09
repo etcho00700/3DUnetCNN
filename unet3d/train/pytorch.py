@@ -73,14 +73,14 @@ def run_pytorch_training(config, model_filename, training_log_filename, verbose=
     #Freeze all parameters
     for param in model.parameters():
         param.requires_grad = False
-    #pdb.set_trace()
     #Unfreeze last layer weights
     for name, param in model.named_parameters():
         if 'final_convolution' in name:
             param.requires_grad = True
         if 'pre_upsampling_blocks' in name:
             param.requires_grad = True
-
+        if 'decoder.layers.4' in name:
+            param.requires_grad = True
     model.train()
 
     criterion = load_criterion(config['loss'], n_gpus=n_gpus)

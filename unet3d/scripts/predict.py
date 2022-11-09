@@ -30,7 +30,7 @@ def format_parser(parser=argparse.ArgumentParser(), sub_command=False):
     parser.add_argument("--replace", nargs="*")
     parser.add_argument("--subjects_config_filename",
                         help="Allows for specification of the config that contains the subject ids. If not set and the "
-                             "subject ids are not listed in the main config, then the filename for the subjects config "
+                             "subject ids are not listed in the main config, then the filename for the 1layer config "
                              "will be read from the main config.")
     parser.add_argument("--source",
                         help="If using multisource templates set this to predict only filenames from a single source.")
